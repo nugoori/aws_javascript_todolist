@@ -69,6 +69,7 @@
 .menu-items:active {
     background-color: #dbdbdb;
 }
+
 .isMenuSelected {
     background-color: #fafafa;
 }

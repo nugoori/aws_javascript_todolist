@@ -24,7 +24,7 @@
 .todolist-main-container::-webkit-scrollbar {
     width: 3px;
 }
-
+/* thumb : 막대자체 / track : 막대를 움직일 수 있는 부분*/
 .todolist-main-container::-webkit-scrollbar-thumb {
     background-color: #dbdbdb;
     border-radius: 3px;
