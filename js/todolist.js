@@ -20,6 +20,7 @@ const modifyTodoOnClickHandler = (target) => {
 }       
 
 const deleteTodoOnClickHandler = (target) => {
+    
     TodolistService.getInstance().removeTodo(target.value);
 }
 
@@ -108,12 +109,18 @@ class TodolistService {
     }
 
     removeTodo(id) {
-        this.todoList = this.todoList.filter((todo) => {
-            return todo.id !== parseInt(id);
-        });
-
-        this.saveLocalStoreage();
-        this.updateTodoList();
+        // 새창 만들어서 하는게 나을듯?
+        if(confirm("삭제 하시겠습니까?")) {
+            this.todoList = this.todoList.filter((todo) => {
+                return todo.id !== parseInt(id);
+            });
+    
+            this.saveLocalStoreage();
+            this.updateTodoList();
+        } else {
+            return;
+        }
+        
     }
 
     updateTodoList() {

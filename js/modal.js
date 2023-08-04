@@ -9,7 +9,19 @@ const closeModal = () => {
     modal.innerHTML = "";
 }
 
-const modifySubmitButtonOnClick = (id) => {
+const modifySubmitButtonOnClickHandler = (id) => {
+    modifySubmitButton(id);
+}
+
+const modifySubmitButtonOnkeyUpHandler = (event, id) => {
+    console.log(event.keyCode);
+    if(event.keyCode === 13) {
+        modifySubmitButton(id);
+        closeModal();
+    }
+}
+
+const modifySubmitButton = (id) => {
     const newTodoContent = document.querySelector(".modal-main .text-input").value;
     const todo = TodolistService.getInstance().getTodoById(id);
 
@@ -36,10 +48,11 @@ const modifyModal = (todo) => {
                 <p class="modal-message">
                     ToDo를 수정해주세요.
                 </p>
-                <input type="text" class="text-input w-f" value="${todo.todoContent}">
+                <input type="text" class="text-input w-f" value="${todo.todoContent})" 
+                    onkeyup="modifySubmitButtonOnkeyUpHandler(event, ${todo.id});">
             </main>
             <footer class="modal-footer">
-                <button class="btn" onclick="modifySubmitButtonOnClick(${todo.id}); closeModal();">확인</button>
+                <button class="btn" onclick="modifySubmitButtonOnClickHandler(${todo.id}); closeModal();">확인</button>
                 <button class="btn" onclick="closeModal();">닫기</button>
             </footer>
         </div>
